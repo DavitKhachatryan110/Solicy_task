@@ -1,0 +1,11 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+  }
+  
+  .small_section{
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+  }

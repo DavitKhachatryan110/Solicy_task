@@ -4,22 +4,23 @@
 
 .editButton {
   position: absolute;
-  max-width: 60px;
   right: 0;
   top: 0;
   border: none !important;
+  width: max-content !important;
+  
 }
 
 Button {
-  /* max-width: max-content; */
   border: none !important;
 }
-.remove{
+
+.remove {
   border: none !important;
   max-width: max-content;
 }
 
-.card_style{
+.card_style {
   background-color: black !important;
   color: bisque !important;
 }

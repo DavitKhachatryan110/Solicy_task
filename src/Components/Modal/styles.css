@@ -2,6 +2,13 @@
   margin-top: 30px;
   margin-left: 30px;
 }
-.editButton{
+
+.editButton {
   border: none !important;
+}
+
+.close {
+  position: "absolute" !important;
+  top: "15px" !important;
+  right: "15px" !important;
 }
