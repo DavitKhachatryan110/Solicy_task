@@ -4,10 +4,9 @@ import { useDataDispach } from "../ContextProvider";
 
 import "./styles.css";
 
-const HookForm = ({ modalName, dataCard, index }) => {
+const HookForm = ({ modalName, dataCard, index, type }) => {
   const dispatch = useDataDispach();
-  console.log(modalName, "ooooooooooooooooooooooooooooo");
-  
+
   const {
     register,
     handleSubmit,
@@ -19,34 +18,37 @@ const HookForm = ({ modalName, dataCard, index }) => {
   };
 
   const onSubmit = (data) => {
-    if (dataCard) {
-      console.log(data, "wwwwwwwwwwwwwwwww");
-      dispatch({ type: "CHANGE", index, data });
+    if (type) {
+      dispatch({ type: type, index, data });
     } else {
+      data.team = [];
       addToData(data);
-      console.log(data);
     }
   };
-  
+
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="form">
+      <label>Name</label>
       <input
         {...register("name")}
         placeholder="Name"
         defaultValue={modalName === "Edit" ? dataCard?.name : null}
       />
+      <label>Country</label>
       <input
         {...register("country", { required: true })}
         defaultValue={modalName === "Edit" ? dataCard?.country : null}
         placeholder="Country"
       />
       {errors?.country && <p>Country name is required.</p>}
+      <label>liga</label>
       <input
         {...register("liga", { required: true })}
         placeholder="Liga"
         defaultValue={modalName === "Edit" ? dataCard?.liga : null}
       />
       {errors.liga && <p>Liga name is required.</p>}
+      <label>Age</label>
       <input
         {...register("age", { pattern: /\d+/ })}
         min="1"

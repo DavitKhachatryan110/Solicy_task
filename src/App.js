@@ -1,13 +1,26 @@
 import "./App.css";
 import Desktop from "./Components/TeamsDesktop";
-import { ContextProvider } from "./Components/ContextProvider";
+import TeamPage from "./Components/TeamPage/index";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  useLocation,
+} from "react-router-dom";
 
 function App() {
   return (
     <div className="App">
-      <ContextProvider>
-        <Desktop />
-      </ContextProvider>
+      <Router>
+        <Switch>
+          <Route exact path="/">
+            <Desktop />
+          </Route>
+          <Route>
+            <TeamPage path="/players" />
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 }

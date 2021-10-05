@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import ModalFootball from "../Modal";
 import TeamCard from "../TeamCard/card";
 import { useCardState, useDataDispach } from "../ContextProvider";
+import { REMOVE_PLAYER } from "../../Constants";
 
 import "./styles.css";
 
@@ -18,7 +19,7 @@ const Desktop = () => {
   const handleRemove = (index) => {
     dispatch({ type: "REMOVE", index });
   };
-console.log(data,'deeeeeeeeedeeeeeeeeeeeedeeeeee')
+
   return (
     <div>
       <div>
@@ -26,7 +27,13 @@ console.log(data,'deeeeeeeeedeeeeeeeeeeeedeeeeee')
       </div>
       <div className="cart_section">
         {data.map((item, index) => (
-          <TeamCard data={item} index={index} handleRemove={handleRemove} />
+          <TeamCard
+            data={item}
+            index={index}
+            handleRemove={handleRemove}
+            modalName="Edit"
+            type="CHANGE"
+          />
         ))}
       </div>
     </div>
