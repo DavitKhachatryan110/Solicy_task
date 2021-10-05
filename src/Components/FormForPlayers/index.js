@@ -113,7 +113,7 @@ const PlayersForm = ({ modalName, dataCard, index, type, indexOfPlayer }) => {
         <input {...register('Foot')} type="radio" value="Rigth"  name="Foot"/>
       </label>
       <label htmlFor="Foot">
-      Վապշե կապ չունի {"   "}
+      Both are equal {"   "}
         <input {...register('Foot')} type="radio" value="Both are equal"  name="Foot"/>
       </label>
       <input type="submit" />
