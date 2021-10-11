@@ -1,5 +1,5 @@
 .card {
-  max-width: 300px !important;
+  width: 250px !important;
 }
 
 .editButton {
@@ -8,7 +8,6 @@
   top: 0;
   border: none !important;
   width: max-content !important;
-  
 }
 
 Button {
@@ -23,4 +22,14 @@ Button {
 .card_style {
   background-color: black !important;
   color: bisque !important;
+}
+
+.removeForOnePlayer {
+ display: none !important;
+}
+
+.erditForONePlayer {
+  top: -75px !important;
+  right: auto;
+  color: black;
 }

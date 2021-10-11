@@ -1,12 +1,13 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useDataDispach } from "../ContextProvider";
+import uniqid from "uniqid";
 
 import "./styles.css";
 
-const HookForm = ({ modalName, dataCard, index, type }) => {
+const HookForm = ({ modalName, dataCard, type }) => {
   const dispatch = useDataDispach();
-
+  const id = dataCard?.id;
   const {
     register,
     handleSubmit,
@@ -19,9 +20,11 @@ const HookForm = ({ modalName, dataCard, index, type }) => {
 
   const onSubmit = (data) => {
     if (type) {
-      dispatch({ type: type, index, data });
+      data.id = dataCard.id;
+      dispatch({ type: type, id, data });
     } else {
       data.team = [];
+      data.id = uniqid();
       addToData(data);
     }
   };
@@ -52,6 +55,7 @@ const HookForm = ({ modalName, dataCard, index, type }) => {
       <input
         {...register("age", { pattern: /\d+/ })}
         min="1"
+        max="180"
         placeholder="Year"
         type="number"
         defaultValue={modalName === "Edit" ? dataCard?.age : null}

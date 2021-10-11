@@ -1,11 +1,12 @@
 import "./App.css";
 import Desktop from "./Components/TeamsDesktop";
 import TeamPage from "./Components/TeamPage/index";
+import PlayerChange from './Components/PlayersInfoChange/index';
+
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  useLocation,
 } from "react-router-dom";
 
 function App() {
@@ -16,8 +17,11 @@ function App() {
           <Route exact path="/">
             <Desktop />
           </Route>
-          <Route>
-            <TeamPage path="/players" />
+          <Route exact path="/teams/:teamID">
+            <TeamPage />
+          </Route>
+          <Route path="/teams/:teamID/player/:id">
+            <PlayerChange/>
           </Route>
         </Switch>
       </Router>

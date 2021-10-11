@@ -21,11 +21,12 @@ const PureModal = ({
   ); 
 
   return (
-    <Modal isOpen={isOpen} toggle={toggle} external={externalCloseBtn}>
+    <Modal isOpen={isOpen} toggle={toggle} >
       <ModalHeader>{modalName}</ModalHeader>
       <ModalBody>
         {modalName == "Add Team" || modalName == "Edit" ? (
           <HookForm
+          toggle={toggle}
             modalName={modalName}
             dataCard={data}
             index={index}
@@ -33,6 +34,7 @@ const PureModal = ({
           />
         ) : (
           <PlayersForm
+          toggle={toggle}
             modalName={modalName}
             dataCard={data}
             index={index}
