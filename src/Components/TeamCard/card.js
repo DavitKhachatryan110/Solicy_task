@@ -3,56 +3,57 @@ import { Card, Button } from "reactstrap";
 import TeamCardBody from "../TeamCardBody";
 import ModalFootball from "../Modal";
 import { Link } from "react-router-dom";
+import { useParams } from "react-router";
 
 import "./style.css";
 
 const TeamCard = ({
-  data,
   handleRemove,
-  index,
   modalName,
   type,
-  indexOfPlayer,
+  data,
+  classRemove,
+  classEdit,
+  teampage
 }) => {
   const titels = Object.keys(data);
-// let rr = indexOfPlayer ? indexOfPlayer : index ;
+  const { teamID} = useParams();
 
-if(indexOfPlayer == undefined){
-  indexOfPlayer = index
-}
   return (
     <div className="card">
       <Card className="card_style">
         <Button
           outline
           color="danger"
-          
-          onClick={() => handleRemove(indexOfPlayer)}
-          className="remove"
+          onClick={() => handleRemove(data.id)}
+          className={classRemove}
         >
           Remove
         </Button>
         <ModalFootball
+        
           color="warning"
-          className="editButton"
+          className={classEdit}
           modalName={modalName}
           data={data}
-          index={index}
           type={type}
-          indexOfPlayer={indexOfPlayer}
         />
         <TeamCardBody data={data} titels={titels} />
         {modalName == "Edit" ? (
           <Link
-            to={{
-              pathname: "/players",
-              state: data,
-              index: index,
-              type: "ADDPLAYER",
-            }}
+            to={`/teams/${data.id}`}
           >
             <Button outline color="success">
               Go Team
+            </Button>
+          </Link>
+        ) : (
+          ""
+        )}
+        {modalName == "Edit Player Info" ? (
+          <Link to={`/teams/${teamID}/player/${data.id}`}>
+            <Button outline color="success">
+              Player Info
             </Button>
           </Link>
         ) : (

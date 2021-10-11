@@ -7,7 +7,7 @@ const TeamCardBody = ({ data, titels }) => {
   return (
     <CardBody className="card_body">
       {titels.map((item, i) => {
-        return item !== "team" ? (
+        return item !== "team" && item !== "id" ? (
           <CardTitle tag="h5" className="text" key={i}>
             {item}: {data[item]}
           </CardTitle>

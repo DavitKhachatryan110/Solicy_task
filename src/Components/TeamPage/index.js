@@ -1,52 +1,50 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router";
+import { useParams } from "react-router";
 import ModalFootball from "../Modal";
 import TeamCard from "../TeamCard/card";
-import { ADD_PLAYER, CHANGE_INFO,REMOVE_PLAYER } from "../../Constants/index";
-import { useCardState ,useDataDispach} from "../ContextProvider";
+import { ADD_PLAYER, CHANGE_INFO, REMOVE_PLAYER } from "../../Constants/index";
+import { useCardState, useDataDispach } from "../ContextProvider";
 
-import "./style.css"
+import "./style.css";
 
 const TeamPage = () => {
   const state = useCardState();
   const dispatch = useDataDispach();
-  // const [data, setData] = useState([]);
-  const infoFromCard = useLocation();
-  const data = infoFromCard.state.team;
-  console.log(data, "vvvvvvvvvvvvvvvvvvvvv");
-  const index = infoFromCard.index;
+  const { teamID } = useParams();
   const [players, setPlayers] = useState([]);
 
-  const handleRemove = (indexOfPlayer) => {
-    dispatch({ type: REMOVE_PLAYER, indexOfPlayer ,index });
+  const handleRemove = (teamId) => {
+    dispatch({ type: REMOVE_PLAYER, teamId, teamID });
   };
 
   useEffect(() => {
-    setPlayers(data);
-    console.log(players, "uuuuuuuuuuuuuuuuuuuuu");
+    const info = state.find((item) => item.id == teamID);
+    setPlayers(info.team);
   }, [state]);
   return (
-    <div >
+    <div>
       <ModalFootball
         modalName={"Add Player"}
         color="success"
-        index={index}
         type={ADD_PLAYER}
       />
       <div className="players_page">
-        {players.map((item, i) => {
-        return  <TeamCard
-            data={item}
-            indexOfPlayer={i}
-            index={index}
-            modalName="Edit Player Info"
-            type={CHANGE_INFO}
-            handleRemove={handleRemove}
-          />;
-        })}
-      </div> 
+        {players &&
+          players.map((item, i) => {
+            return (
+              <TeamCard
+                classEdit="editButton"
+                classRemove="remove"
+                data={item}
+                indexOfPlayer={i}
+                modalName="Edit Player Info"
+                type={CHANGE_INFO}
+                handleRemove={handleRemove}
+              />
+            );
+          })}
+      </div>
     </div>
   );
 };
 export default TeamPage;
-//index={index} type={type}     data, handleRemove, index, modalName, type

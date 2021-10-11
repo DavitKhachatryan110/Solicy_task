@@ -8,16 +8,10 @@ import "./styles.css";
 
 const Desktop = () => {
   const dispatch = useDataDispach();
-
   const state = useCardState();
-  const [data, setData] = useState([]);
 
-  useEffect(() => {
-    setData(state);
-  }, [state]);
-
-  const handleRemove = (index) => {
-    dispatch({ type: "REMOVE", index });
+  const handleRemove = (id) => {
+    dispatch({ type: "REMOVE", id});
   };
 
   return (
@@ -26,15 +20,18 @@ const Desktop = () => {
         <ModalFootball modalName="Add Team" />
       </div>
       <div className="cart_section">
-        {data.map((item, index) => (
-          <TeamCard
-            data={item}
-            index={index}
-            handleRemove={handleRemove}
-            modalName="Edit"
-            type="CHANGE"
-          />
-        ))}
+        {state &&
+          state.map((item, index) => (
+            <TeamCard
+              classRemove="remove"
+              classEdit="editButton"
+              data={item}
+              teampage={true}
+              handleRemove={handleRemove}
+              modalName="Edit"
+              type="CHANGE"
+            />
+          ))}
       </div>
     </div>
   );
